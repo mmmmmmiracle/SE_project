@@ -103,32 +103,39 @@ if __name__ == "__main__":
         # Split the file path and get the filename
         str = re.split(r"\\", file)
         apk = str[-1]
-        folderName = apk[0:-4]
-        # print(apk)
 
-        # Decomplier file and get smali, manifest
+        folderName = re.split(r"/", apk)[-1][0:-4]
+        folderPath = apk[0:-4]
+
+        print("The path is: ", file)
+        print("The str is: ", str)
+        print("apk is: ", apk)
+        print("filename is: ", folderName)
+
+        # Decomplier file and get manifest
         if (os.path.exists(folderName)):
-            print("The %s is exist, continue" % (folderName))
+            print("The %s is exist, continue" % (folderPath))
         else:
             Decomplier(folderName)
 
         # Get the current working directory
         DstDir = os.getcwd()
-        # print(DstDir)
+        print("Dstdir is: ", DstDir)
 
         # Get manifest
         os.system('extractManifest.bat %s' % (folderName))
         # Get smali path
-        os.system('api.bat %s' % (folderName))
-        command = "copy " + DstDir + "\\" + apk + "\\newPmsnAlys.txt" + " " + DstDir
-        # print(command)
-        command2 = "copy " + DstDir + "\\" + apk + "\\smali\\smaliFileList.txt" + " " + DstDir
+        #os.system('api.bat %s' % (folderName))
+        command = "copy " + DstDir + "\\" + folderName + "\\newPmsnAlys.txt" + " " + DstDir
+        print("The command is: ", command)
+        #command2 = "copy " + DstDir + "\\" + apk + "\\smali\\smaliFileList.txt" + " " + DstDir
         # print(command2)
         os.system(command)
-        os.system(command2)
-        # print(os.getcwd())
+        #os.system(command2)
+        print("The current cwd is:", os.getcwd())
 
         # Extraction the permission
+        #newPath = os.getcwd() + "\\folderName\\newPmsnAlys.txt"
         with open(r"newPmsnAlys.txt") as f:
             for line in f.readlines():
                 m = line.split('=')
