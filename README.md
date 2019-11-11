@@ -2,7 +2,7 @@
 
 Project in software engineering courses of TIEI
 
-Hou Yongsheng & Liu Yi & Yuan Shasha
+Hou Yongsheng & Liu Yi & Yuan Shasha 
 
 **Attention**: The file ```permission_analysis``` is not used anymore.
 
