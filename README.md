@@ -1,6 +1,9 @@
 ## 面向APP的权限挖掘及分析工具
 
 Project in software engineering courses of TIEI
+Liu Yi
+Hou Yongsheng
+Yuan Shasha
 
 **Attention**: The file ```permission_analysis``` is not used anymore.
 
