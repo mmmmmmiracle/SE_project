@@ -2,6 +2,18 @@
 
 The project in Soft Engneering Course of TIEI
 
-You can Input  ```python main.py your_path```  in cmd to execute this program.
-
 **Attention**: The file ```permission_analysis``` is not used anymore.
+
+###Some explanations for our classes and files in this project:
+* FileTools:
+  To execute some file operations.
+* DecompTools:
+  To decompile the .apk file.
+* Extraction:
+  To extract the permission of the target Apps.
+* apktool.bat
+  A batch file to run the apktool.jar package.
+* extractManifest.bat
+  A batch file to extract some code of the file AndroidManifest.xml into a new file.
+
+You can Input  ```python main.py your_path```  in your cmd to execute this program.
