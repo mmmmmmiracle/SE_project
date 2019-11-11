@@ -6,6 +6,8 @@ Hou Yongsheng & Liu Yi & Yuan Shasha
 
 **Attention**: The file ```permission_analysis``` is not used anymore.
 
+You can Input  ```python main.py your_path```  in your cmd to execute this program.
+
 ### Some explanations for our classes and files in this project:
 * FileTools:
   To execute some file operations.
@@ -17,5 +19,3 @@ Hou Yongsheng & Liu Yi & Yuan Shasha
   A batch file to run the apktool.jar package.
 * extractManifest.bat
   A batch file to extract some code of the file AndroidManifest.xml into a new file.
-
-You can Input  ```python main.py your_path```  in your cmd to execute this program.
