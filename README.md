@@ -1,6 +1,6 @@
 ## 面向APP的权限挖掘及分析工具
 
-The project in Soft Engneering Course of TIEI
+Project in software engineering courses of TIEI
 
 **Attention**: The file ```permission_analysis``` is not used anymore.
 
