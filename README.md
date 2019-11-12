@@ -4,7 +4,7 @@ Project in software engineering courses of TIEI
 
 Hou Yongsheng & Liu Yi & Yuan Shasha 
 
-**Attention**: The file ```permission_analysis``` is not used anymore.
+**Attention**: The file ```permission_analysis.py``` is not used anymore.
 
 You can Input  ```python main.py your_path```  in your cmd to execute this program.
 
