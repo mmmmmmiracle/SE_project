@@ -9,13 +9,13 @@ Hou Yongsheng & Liu Yi & Yuan Shasha
 You can Input  ```python main.py your_path```  in your cmd to execute this program.
 
 ### Some explanations for our classes and files in this project:
-* FileTools:
+* ```FileTools```: 
   To execute some file operations.
-* DecompTools:
+* ```DecompTools```: 
   To decompile the .apk file.
-* Extraction:
+* ```Extraction```: 
   To extract the permission of the target Apps.
-* apktool.bat
+* ```apktool.bat```: 
   A batch file to run the apktool.jar package.
-* extractManifest.bat
+* ```extractManifest.bat```: 
   A batch file to extract some code of the file AndroidManifest.xml into a new file.
