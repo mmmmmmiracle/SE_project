@@ -6,10 +6,10 @@ class Extracter():
         self.folderPath = folderPath
         self.fileName = folderName
 
-    def Save2File(self, contents):
+    def Save2File(self, extFileName, contents):
         # Write contents in the end of the file
-        filePath = "./result/" + self.fileName
-        fh = open(self.fileName, 'a')
+        filePath = "./result/" + extFileName
+        fh = open(extFileName, 'a')
         fh.write(contents)
         fh.close()
 
@@ -26,6 +26,7 @@ class Extracter():
         print("+==================================+")
 
     def ExtractFile(self):
+        outputName = self.fileName + "Ext.txt"
         with open(r"newPmsnAlys.txt") as f:
             for line in f.readlines():
                 m = line.split('=')
@@ -33,7 +34,7 @@ class Extracter():
                 m2 = m1[1:-5]
                 m3 = m2.split('.')
                 result = m3[-1]
-                self.Save2File('ManifestExtraction.txt', "%s\n\r" % result)
+                self.Save2File(outputName, "%s\n\r" % result)
         os.remove("newPmsnAlys.txt")
     
 
