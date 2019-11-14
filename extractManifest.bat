@@ -1,8 +1,6 @@
 @echo off
 cd /d %~dp0
 
-:pause>nul
-
 
 if EXIST %1 goto 1
 else goto 0
