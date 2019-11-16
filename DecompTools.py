@@ -14,11 +14,13 @@ class Decompiler():
     """
     Decomply the .apk file
     """
-    def __init__(self, foldername, apk):
+    def __init__(self, foldername, path):
         self.foldername = foldername
-        self.apk = apk
+        self.path = path
 
     def Decompile(self):
-        apktool_command = "apktool.jar d " + self.apk + " -o " + self.foldername
+        dir = os.getcwd()
+        print("The current dir before decompile is: ", dir)
+        apktool_command = "apktool.jar d " + self.path + " -o decompileResult\\" + self.foldername
         os.system(apktool_command)
     

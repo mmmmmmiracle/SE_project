@@ -1,13 +1,16 @@
 @echo off
-cd /d %~dp0
+echo *************************************
+echo Start Extract
+echo *************************************
+cd /d %1
 
-
-if EXIST %1 goto 1
-else goto 0
-
+if EXIST %2 (
+    goto 1
+) else (
+    goto 0
+)
 
 :0
-
 echo failed
 pause
 
@@ -15,15 +18,18 @@ pause
 goto edit
 
 :edit
-cd %1
+cd /d %2
 
-IF EXIST /d %~dp0\newPmsnAlys.txt(
-del newPmsnAlys.txt
+if EXIST /d %1\%2\newPmsnAlys.txt(
+    del newPmsnAlys.txt
 )
 
 for /f "delims=" %%a in (AndroidManifest.xml) do (
-echo "%%a"|find "android.permission" &&echo %%a >>newPmsnAlys.txt
+    echo "%%a"|find "android.permission" && echo %%a >> newPmsnAlys.txt
 )
+
 cd ..
-echo end...
+echo *************************************
+echo End
+echo *************************************
 

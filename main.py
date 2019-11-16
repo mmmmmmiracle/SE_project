@@ -19,6 +19,8 @@ def main():
     # Delete the exist files        ***
     if(os.path.exists("newPmsnAlys.txt")):
         os.remove("newPmsnAlys.txt")
+
+    # The file tool
     fileTool = File(sys.argv)
 
     # Get all path list:
@@ -44,7 +46,7 @@ def main():
         if (os.path.exists(folderName)):
             print("The %s is exist, continue" % (folderPath))
         else:
-            dec = Decompiler(folderName, apk)
+            dec = Decompiler(folderName, path)
             dec.Decompile()
 
         # Create an Extracter
