@@ -3,6 +3,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 import json
 
+# #显示所有列
+# pd.set_option('display.max_columns', None)
+# #显示所有行
+# pd.set_option('display.max_rows', None)
+
+import seaborn as sns
+plt.rcParams['font.sans-serif'] = ['SimHei']  # 解决中文显示问题-设置字体为黑体
+plt.rcParams['axes.unicode_minus'] = False  # 解决保存图像是负号'-'显示为方块的问题
+sns.set(font='SimHei')  # 解决Seaborn中文显示问题
+
 class Permision(object):
     def __init__(self):
         f =  open('android_all_permisions.json', 'r')
@@ -28,8 +38,8 @@ class Permision(object):
 class ApkPermision(Permision):
     def __init__(self,permision_file):
         super(ApkPermision,self).__init__()
-        self.name = permision_file.split('\\')[-1].split('.')[0][:-3]
-        self.permisions = pd.read_csv(permision_file,header=None,index_col=None)[0].values[:-1]
+        self.name = permision_file.split('\\')[-1].split('.')[0]
+        self.permisions = pd.read_csv(permision_file,header=None,index_col=None)[0].values
         
     def permision2array(self):
         res = np.zeros(len(self.all_permisions))
@@ -49,7 +59,7 @@ class PermisionAnalysisUtil(object):
     def get_apks_permisions(self,path):
         '''得到所有APK的所有权限'''
         import glob
-        apks = glob.glob(f'{path}/*.txt')
+        apks = glob.glob(f'{path}*/*.txt')
         permision = self.permision.all_permisions
         permisions_df = pd.DataFrame(index=permision)
         for apk in apks:
@@ -95,12 +105,12 @@ class PermisionAnalysisUtil(object):
             功能：得到权限的说明
             参数：
                 permisions 权限名称或者列表
-                is_index   是通过下标还是名称访问，每个权限有一个唯一标识[0-134](共有135个权限)  
+                is_index   是通过下标还是权限名称访问，每个权限有一个唯一标识[0-134](共有135个权限)  
         ''' 
         res = {}
         indexes = permisions
-        permisions = []
         if is_index:
+            permisions = []
             if isinstance(indexes,int):
                 permisions.append(self.permision.index2key_dict[indexes])
             elif isinstance(indexes,tuple) or isinstance(indexes,list):
@@ -108,7 +118,7 @@ class PermisionAnalysisUtil(object):
                     permisions.append(self.permision.index2key_dict[index])
             else:
                 pass
-        
+
         if isinstance(permisions,str):
             res = {permisions:self.permision.all_permisions_dict[permisions] }
         elif isinstance(permisions,tuple) or isinstance(permisions,list):
@@ -125,16 +135,3 @@ class PermisionAnalysisUtil(object):
         cos_sim = cosine_similarity(vectors)
         pair_dis = pairwise_distances(vectors,metric="cosine")
         return {'cos_sim':cos_sim,'pair_dis':pair_dis}
-
-def main():
-    util = PermisionAnalysisUtil('apk_permisions')
-    print('所有APK的所有权限*******************\n',util.permisions_df)
-    print('\n权限列表*******************\n',util.get_permision_list(['ruanruan']))
-    print('\n每一个APK的权限数量*******************\n',util.get_permision_num())
-    print('\n需求最多的权限*******************\n',util.get_top_permision(15))
-    print('\n每个APK都需要的权限*******************\n',util.get_permisions_all_have())
-    print('\n权限的解释说明*******************\n',util.get_permisions_description([i for i in range(10)],is_index=True))
-    print('\n权限的余弦相似度*******************\n',util.get_cosine_similarity(np.array(util.permisions_df).transpose()))
-    
-if __name__ == '__main__':
-    main()
