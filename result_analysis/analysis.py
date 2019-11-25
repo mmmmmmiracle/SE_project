@@ -59,7 +59,7 @@ class PermisionAnalysisUtil(object):
     def get_apks_permisions(self,path):
         '''得到所有APK的所有权限'''
         import glob
-        apks = glob.glob(f'{path}*/*.txt')
+        apks = glob.glob(f'{path}*.txt')
         permision = self.permision.all_permisions
         permisions_df = pd.DataFrame(index=permision)
         for apk in apks:
